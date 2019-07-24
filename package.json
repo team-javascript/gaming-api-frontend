@@ -4,21 +4,19 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "parcel index.html"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/jon-cunicella/gaming-api-frontend.git"
+    "dev": "parcel index.html",
+    "test": "jest --colors"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/jon-cunicella/gaming-api-frontend/issues"
-  },
-  "homepage": "https://github.com/jon-cunicella/gaming-api-frontend#readme",
   "dependencies": {
+    "babel": "^6.23.0",
+    "jest": "^24.8.0",
     "parcel": "^1.12.3"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.5.5",
+    "@babel/node": "^7.5.5"
   }
 }
