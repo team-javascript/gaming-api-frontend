@@ -49,8 +49,8 @@ class Components {
 
     const navListItemGames = Html()
       .create("li")
-      .addClass("nav-menu__list-item")
       .addAnchor("/#", "Games")
+      .addClass("nav-menu__list-item")
       .click(event => {
         event.preventDefault();
         this.renderPageHome();
@@ -58,8 +58,8 @@ class Components {
 
     const navListItemPlatforms = Html()
       .create("li")
-      .addClass("nav-menu__list-item")
       .addAnchor("/#", "Platforms")
+      .addClass("nav-menu__list-item")
       .click(event => {
         event.preventDefault();
         this.renderPagePlatforms();
@@ -67,8 +67,8 @@ class Components {
 
     const navListItemDevelopers = Html()
       .create("li")
-      .addClass("nav-menu__list-item")
       .addAnchor("/#", "Developers")
+      .addClass("nav-menu__list-item")
       .click(event => {
         event.preventDefault();
         this.renderPageDevelopers();

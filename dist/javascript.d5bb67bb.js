@@ -349,17 +349,17 @@ function () {
 
       var navMenu = (0, _Html.default)().create("nav").addClass("nav-menu");
       var navList = (0, _Html.default)().create("ul").addClass("nav-menu__list");
-      var navListItemGames = (0, _Html.default)().create("li").addClass("nav-menu__list-item").addAnchor("/#", "Games").click(function (event) {
+      var navListItemGames = (0, _Html.default)().create("li").addAnchor("/#", "Games").addClass("nav-menu__list-item").click(function (event) {
         event.preventDefault();
 
         _this.renderPageHome();
       });
-      var navListItemPlatforms = (0, _Html.default)().create("li").addClass("nav-menu__list-item").addAnchor("/#", "Platforms").click(function (event) {
+      var navListItemPlatforms = (0, _Html.default)().create("li").addAnchor("/#", "Platforms").addClass("nav-menu__list-item").click(function (event) {
         event.preventDefault();
 
         _this.renderPagePlatforms();
       });
-      var navListItemDevelopers = (0, _Html.default)().create("li").addClass("nav-menu__list-item").addAnchor("/#", "Developers").click(function (event) {
+      var navListItemDevelopers = (0, _Html.default)().create("li").addAnchor("/#", "Developers").addClass("nav-menu__list-item").click(function (event) {
         event.preventDefault();
 
         _this.renderPageDevelopers();
@@ -595,7 +595,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53457" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59246" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
