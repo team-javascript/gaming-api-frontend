@@ -187,6 +187,46 @@ class Components {
     return mainContent;
   }
 
+  renderPagePlatform(data) {
+    const currentMainContentContainer = this.getWrapperDiv()
+      .select(".content")
+      .select(".container")
+      .select(".content-block");
+
+    const platformTitle = Html()
+      .create("h3")
+      .addClass("content-title")
+      .text(data.device);
+
+    const games = Html()
+      .create("ul")
+      .addClass("content-list");
+
+    data.gameList.forEach(game => {
+      const gameElement = Html()
+        .create("li")
+        .addClass("content-block__list-item")
+        .addChild(
+          Html()
+            .create("a")
+            .addAttribute("href", `/games/${game._id}`)
+            .text(game)
+            .click(event => {
+              event.preventDefault();
+
+              const endpoint = event.target.getAttribute("href");
+              Api().getRequest(`http://localhost:3000${endpoint}`, data => {
+                this.renderPageSingle(data, endpoint);
+              });
+            })
+        );
+      games.addChild(gameElement);
+    });
+
+    currentMainContentContainer.replace(platformTitle);
+    currentMainContentContainer.addChild(games);
+  }
+
   renderPageGame(data) {
     const currentMainContentContainer = this.getWrapperDiv()
       .select(".content")
