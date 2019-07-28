@@ -186,6 +186,46 @@ class Components {
     mainContent.addChild(containerDiv);
     return mainContent;
   }
+  renderPageDeveloper(data) {
+    const currentMainContentContainer = this.getWrapperDiv()
+      .select(".content")
+      .select(".container")
+      .select(".content-block");
+
+    const developerName = Html()
+      .create("h3")
+      .addClass("content-title")
+      .text(data.companyName);
+
+    const developerGames = Html()
+      .create("ul")
+      .addClass("content-list");
+
+    data.gameCatalogue.forEach(game => {
+      const gameElement = Html()
+        .create("li")
+        .addClass("content-block__list-item")
+        .addChild(
+          Html()
+            .create("a")
+            .addAttribute("href", `/games/${game._id}`)
+            .text(game)
+            .click(event => {
+              event.preventDefault();
+
+              const endpoint = event.target.getAttribute("href");
+              Api().getRequest(`http://localhost:3000${endpoint}`, data => {
+                this.renderPageSingle(data, endpoint);
+              });
+            })
+        );
+
+      developerGames.addChild(gameElement);
+    });
+
+    currentMainContentContainer.replace(developerName);
+    currentMainContentContainer.addChild(developerGames);
+  }
 
   renderPagePlatform(data) {
     const currentMainContentContainer = this.getWrapperDiv()
@@ -211,14 +251,14 @@ class Components {
             .create("a")
             .addAttribute("href", `/games/${game._id}`)
             .text(game)
-            .click(event => {
-              event.preventDefault();
+          // .click(event => {
+          //   event.preventDefault();
 
-              const endpoint = event.target.getAttribute("href");
-              Api().getRequest(`http://localhost:3000${endpoint}`, data => {
-                this.renderPageSingle(data, endpoint);
-              });
-            })
+          //   const endpoint = event.target.getAttribute("href");
+          //   Api().getRequest(`http://localhost:3000${endpoint}`, data => {
+          //     this.renderPageSingle(data, endpoint);
+          //   });
+          // })
         );
       games.addChild(gameElement);
     });

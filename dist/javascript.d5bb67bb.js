@@ -451,14 +451,14 @@ function () {
       return mainContent;
     }
   }, {
-    key: "renderPagePlatform",
-    value: function renderPagePlatform(data) {
+    key: "renderPageDeveloper",
+    value: function renderPageDeveloper(data) {
       var _this3 = this;
 
       var currentMainContentContainer = this.getWrapperDiv().select(".content").select(".container").select(".content-block");
-      var platformTitle = (0, _Html.default)().create("h3").addClass("content-title").text(data.device);
-      var games = (0, _Html.default)().create("ul").addClass("content-list");
-      data.gameList.forEach(function (game) {
+      var developerName = (0, _Html.default)().create("h3").addClass("content-title").text(data.companyName);
+      var developerGames = (0, _Html.default)().create("ul").addClass("content-list");
+      data.gameCatalogue.forEach(function (game) {
         var gameElement = (0, _Html.default)().create("li").addClass("content-block__list-item").addChild((0, _Html.default)().create("a").addAttribute("href", "/games/".concat(game._id)).text(game).click(function (event) {
           event.preventDefault();
           var endpoint = event.target.getAttribute("href");
@@ -466,6 +466,26 @@ function () {
             _this3.renderPageSingle(data, endpoint);
           });
         }));
+        developerGames.addChild(gameElement);
+      });
+      currentMainContentContainer.replace(developerName);
+      currentMainContentContainer.addChild(developerGames);
+    }
+  }, {
+    key: "renderPagePlatform",
+    value: function renderPagePlatform(data) {
+      var currentMainContentContainer = this.getWrapperDiv().select(".content").select(".container").select(".content-block");
+      var platformTitle = (0, _Html.default)().create("h3").addClass("content-title").text(data.device);
+      var games = (0, _Html.default)().create("ul").addClass("content-list");
+      data.gameList.forEach(function (game) {
+        var gameElement = (0, _Html.default)().create("li").addClass("content-block__list-item").addChild((0, _Html.default)().create("a").addAttribute("href", "/games/".concat(game._id)).text(game) // .click(event => {
+        //   event.preventDefault();
+        //   const endpoint = event.target.getAttribute("href");
+        //   Api().getRequest(`http://localhost:3000${endpoint}`, data => {
+        //     this.renderPageSingle(data, endpoint);
+        //   });
+        // })
+        );
         games.addChild(gameElement);
       });
       currentMainContentContainer.replace(platformTitle);
@@ -569,7 +589,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50762" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51550" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
