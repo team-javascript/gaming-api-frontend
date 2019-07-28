@@ -212,7 +212,7 @@ class Components {
     currentMainContentContainer.addChild(games);
   }
 
-  renderPageSingle() {
+  renderPageSingle(data, end) {
     const typeOfObject = endpoint.split("/")[1];
     if (typeOfObject === "games") {
       this.renderPageGame(data);
