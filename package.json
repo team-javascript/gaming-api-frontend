@@ -12,6 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "babel": "^6.23.0",
+    "cors": "^2.8.5",
     "jest": "^24.8.0",
     "parcel": "^1.12.3"
   },

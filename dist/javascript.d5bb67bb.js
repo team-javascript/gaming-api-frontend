@@ -368,6 +368,86 @@ function () {
       return navMenu;
     }
   }, {
+    key: "renderContentBlock",
+    value: function renderContentBlock(requestedData) {
+      var _this2 = this;
+
+      var contentBlock = (0, _Html.default)().create("section").addClass("content-block");
+      var contentTitle = (0, _Html.default)().create("h2").addClass("content-title").text(requestedData);
+      var contentList = (0, _Html.default)().create("ul").addClass("content-list");
+      (0, _Api.default)().getRequest("http://localhost:3000/".concat(requestedData), function (responseCollection) {
+        responseCollection.forEach(function (item) {
+          var name;
+
+          if (requestedData === "games") {
+            name = "".concat(item.title);
+          }
+
+          if (requestedData === "platforms") {
+            name = "".concat(item.device);
+          }
+
+          if (requestedData === "developers") {
+            name = "".concat(item.companyName);
+          }
+
+          var contentBlockListItem = (0, _Html.default)().create("li").addClass("content-block__list-item").addChild((0, _Html.default)().create("a").addAttribute("href", "".concat(requestedData, "/").concat(item._id)).text(name).click(function (event) {
+            event.preventDefault();
+            var endpoint = event.target.getAttribute("href");
+            (0, _Api.default)().getRequest("http://localhost:3000/".concat(endpoint), function (data) {
+              var typeOfObject = endpoint.split("/")[0];
+
+              if (typeOfObject === "games") {
+                _this2.renderPageGame(data);
+              }
+
+              if (typeOfObject === "platforms") {
+                _this2.renderPagePlatform(data);
+              }
+
+              if (typeOfObject === "developers") {
+                _this2.renderPageDeveloper(data);
+              }
+
+              _this2.renderPageSingle(data, endpoint);
+            });
+          }));
+          contentList.addChild(contentBlockListItem);
+        });
+      });
+      contentBlock.addChild(contentTitle);
+      contentBlock.addChild(contentList);
+      return contentBlock;
+    }
+  }, {
+    key: "renderPageGames",
+    value: function renderPageGames() {
+      var currentMainContentContainer = this.wrapperDiv().select(".content").select(".container");
+      currentMainContentContainer.replace(this.renderContentBlock("games"));
+    }
+  }, {
+    key: "renderPagePlatforms",
+    value: function renderPagePlatforms() {
+      var currentMainContentContainer = this.wrapperDiv().select(".content").select(".container");
+      currentMainContentContainer.replace(this.renderContentBlock("platforms"));
+    }
+  }, {
+    key: "renderPageDevelopers",
+    value: function renderPageDevelopers() {
+      var currentMainContentContainer = this.wrapperDiv().select(".content").select(".container");
+      currentMainContentContainer.replace(this.renderContentBlock("developers"));
+    }
+  }, {
+    key: "renderMainContent",
+    value: function renderMainContent(requestedData) {
+      var mainContent = (0, _Html.default)().create("main").addClass("content");
+      var containerDiv = (0, _Html.default)().create("div").addClass("container");
+      var contentBlock = this.renderContentBlock(requestedData);
+      containerDiv.addChild(contentBlock);
+      mainContent.addChild(containerDiv);
+      return mainContent;
+    }
+  }, {
     key: "renderPageHome",
     value: function renderPageHome() {
       var app = this.getAppContext();
@@ -375,8 +455,10 @@ function () {
       var mainHeader = this.renderMainHeader();
       var mainFooter = this.renderMainFooter();
       var navMenu = this.renderNavMenu();
+      var mainContent = this.renderMainContent("games");
       wrapperDiv.addChild(mainHeader);
       wrapperDiv.addChild(navMenu);
+      wrapperDiv.addChild(mainContent);
       wrapperDiv.addChild(mainFooter);
       app.replace(wrapperDiv);
     }
@@ -435,7 +517,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62958" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64724" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
