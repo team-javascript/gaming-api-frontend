@@ -448,6 +448,34 @@ function () {
       return mainContent;
     }
   }, {
+    key: "renderPageGame",
+    value: function renderPageGame(data) {
+      var currentMainContentContainer = this.getWrapperDiv().select(".content").select(".container").select(".content-block");
+      var gameTitle = (0, _Html.default)().create("h3").addClass("content-title").text(data.title);
+      var games = (0, _Html.default)().create("ul").addClass("content-list");
+      var coverArt = (0, _Html.default)().create("li").addClass("content-block__list-item").text(data.coverArt);
+      games.addChild(coverArt);
+      currentMainContentContainer.replace(gameTitle);
+      currentMainContentContainer.addChild(games);
+    }
+  }, {
+    key: "renderPageSingle",
+    value: function renderPageSingle() {
+      var typeOfObject = endpoint.split("/")[1];
+
+      if (typeOfObject === "games") {
+        this.renderPageGame(data);
+      }
+
+      if (typeOfObject === "platforms") {
+        this.renderPagePlatform(data);
+      }
+
+      if (typeOfObject === "developers") {
+        this.renderPageDeveloper(data);
+      }
+    }
+  }, {
     key: "renderPageHome",
     value: function renderPageHome() {
       var app = this.getAppContext();
@@ -517,7 +545,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64724" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64828" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

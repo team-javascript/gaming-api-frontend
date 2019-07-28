@@ -187,6 +187,46 @@ class Components {
     return mainContent;
   }
 
+  renderPageGame(data) {
+    const currentMainContentContainer = this.getWrapperDiv()
+      .select(".content")
+      .select(".container")
+      .select(".content-block");
+
+    const gameTitle = Html()
+      .create("h3")
+      .addClass("content-title")
+      .text(data.title);
+
+    const games = Html()
+      .create("ul")
+      .addClass("content-list");
+
+    
+
+    const coverArt = Html()
+      .create("li")
+      .addClass("content-block__list-item")
+      .text(data.coverArt);
+
+    games.addChild(coverArt);
+    currentMainContentContainer.replace(gameTitle);
+    currentMainContentContainer.addChild(games);
+  }
+
+  renderPageSingle() {
+    const typeOfObject = endpoint.split("/")[1];
+    if (typeOfObject === "games") {
+      this.renderPageGame(data);
+    }
+    if (typeOfObject === "platforms") {
+      this.renderPagePlatform(data);
+    }
+    if (typeOfObject === "developers") {
+      this.renderPageDeveloper(data);
+    }
+  }
+
   renderPageHome() {
     const app = this.getAppContext();
     const wrapperDiv = this.getWrapperDiv();
