@@ -281,13 +281,29 @@ class Components {
     const games = Html()
       .create("ul")
       .addClass("content-list");
+    const platform = Html()
+      .create("li")
+      .addClass("content-list")
+      .text(data.platform);
+
+    const developer = Html()
+      .create("li")
+      .addClass("content-list")
+      .text(data.developer);
 
     const coverArt = Html()
       .create("li")
       .addClass("content-block__list-item")
-      .text(data.coverArt);
+      .addChild(
+        Html()
+          .create("img")
+          .addClass("list-item__image")
+          .addAttribute("src", data.coverArt)
+      );
 
     games.addChild(coverArt);
+    games.addChild(platform);
+    games.addChild(developer);
     currentMainContentContainer.replace(gameTitle);
     currentMainContentContainer.addChild(games);
   }

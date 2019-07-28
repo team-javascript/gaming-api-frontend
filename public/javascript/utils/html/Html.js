@@ -10,15 +10,15 @@ class Html {
   }
 
   addAnchor(href, text) {
-    this.create('a')
-      .addAttribute('href', href)
+    this.create("a")
+      .addAttribute("href", href)
       .text(text);
     return this;
   }
 
   addClass(classToAdd) {
     if (this.element.classList.contains(classToAdd)) {
-      throw new Error('Class already exists on element.');
+      throw new Error("Class already exists on element.");
     }
     this.element.classList.add(classToAdd);
     return this;
@@ -26,7 +26,7 @@ class Html {
 
   addChild(elementToAdd) {
     if (elementToAdd.render() instanceof HTMLUnknownElement) {
-      throw new Error('Invalid HTML tag');
+      throw new Error("Invalid HTML tag");
     }
 
     this.element.append(elementToAdd.render());
@@ -35,7 +35,7 @@ class Html {
   }
 
   click(callback) {
-    this.element.addEventListener('click', callback);
+    this.element.addEventListener("click", callback);
 
     return this;
   }
@@ -55,15 +55,15 @@ class Html {
   }
 
   _isClassQuery(query) {
-    return query.startsWith('.');
+    return query.startsWith(".");
   }
 
   _isIdQuery(query) {
-    return query.startsWith('#');
+    return query.startsWith("#");
   }
 
   replace(element) {
-    this.element.innerHTML = '';
+    this.element.innerHTML = "";
     this.addChild(element);
 
     return this;

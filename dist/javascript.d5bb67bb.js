@@ -151,14 +151,14 @@ function () {
   }, {
     key: "addAnchor",
     value: function addAnchor(href, text) {
-      this.create('a').addAttribute('href', href).text(text);
+      this.create("a").addAttribute("href", href).text(text);
       return this;
     }
   }, {
     key: "addClass",
     value: function addClass(classToAdd) {
       if (this.element.classList.contains(classToAdd)) {
-        throw new Error('Class already exists on element.');
+        throw new Error("Class already exists on element.");
       }
 
       this.element.classList.add(classToAdd);
@@ -168,7 +168,7 @@ function () {
     key: "addChild",
     value: function addChild(elementToAdd) {
       if (elementToAdd.render() instanceof HTMLUnknownElement) {
-        throw new Error('Invalid HTML tag');
+        throw new Error("Invalid HTML tag");
       }
 
       this.element.append(elementToAdd.render());
@@ -177,7 +177,7 @@ function () {
   }, {
     key: "click",
     value: function click(callback) {
-      this.element.addEventListener('click', callback);
+      this.element.addEventListener("click", callback);
       return this;
     }
   }, {
@@ -199,17 +199,17 @@ function () {
   }, {
     key: "_isClassQuery",
     value: function _isClassQuery(query) {
-      return query.startsWith('.');
+      return query.startsWith(".");
     }
   }, {
     key: "_isIdQuery",
     value: function _isIdQuery(query) {
-      return query.startsWith('#');
+      return query.startsWith("#");
     }
   }, {
     key: "replace",
     value: function replace(element) {
-      this.element.innerHTML = '';
+      this.element.innerHTML = "";
       this.addChild(element);
       return this;
     }
@@ -497,8 +497,12 @@ function () {
       var currentMainContentContainer = this.getWrapperDiv().select(".content").select(".container").select(".content-block");
       var gameTitle = (0, _Html.default)().create("h3").addClass("content-title").text(data.title);
       var games = (0, _Html.default)().create("ul").addClass("content-list");
-      var coverArt = (0, _Html.default)().create("li").addClass("content-block__list-item").text(data.coverArt);
+      var platform = (0, _Html.default)().create("li").addClass("content-list").text(data.platform);
+      var developer = (0, _Html.default)().create("li").addClass("content-list").text(data.developer);
+      var coverArt = (0, _Html.default)().create("li").addClass("content-block__list-item").addChild((0, _Html.default)().create("img").addClass("list-item__image").addAttribute("src", data.coverArt));
       games.addChild(coverArt);
+      games.addChild(platform);
+      games.addChild(developer);
       currentMainContentContainer.replace(gameTitle);
       currentMainContentContainer.addChild(games);
     }
@@ -589,7 +593,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51550" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52279" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
