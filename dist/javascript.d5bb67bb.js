@@ -351,15 +351,18 @@ function () {
       var navList = (0, _Html.default)().create("ul").addClass("nav-menu__list");
       var navListItemGames = (0, _Html.default)().create("li").addClass("nav-menu__list-item").addAnchor("/#", "Games").click(function (event) {
         event.preventDefault();
-        _this.renderPageHome;
+
+        _this.renderPageHome();
       });
       var navListItemPlatforms = (0, _Html.default)().create("li").addClass("nav-menu__list-item").addAnchor("/#", "Platforms").click(function (event) {
         event.preventDefault();
-        _this.renderPageHome;
+
+        _this.renderPagePlatforms();
       });
       var navListItemDevelopers = (0, _Html.default)().create("li").addClass("nav-menu__list-item").addAnchor("/#", "Developers").click(function (event) {
         event.preventDefault();
-        _this.renderPageHome;
+
+        _this.renderPageDevelopers();
       });
       navList.addChild(navListItemGames);
       navList.addChild(navListItemPlatforms);
@@ -428,13 +431,13 @@ function () {
   }, {
     key: "renderPagePlatforms",
     value: function renderPagePlatforms() {
-      var currentMainContentContainer = this.wrapperDiv().select(".content").select(".container");
+      var currentMainContentContainer = this.getWrapperDiv().select(".content").select(".container");
       currentMainContentContainer.replace(this.renderContentBlock("platforms"));
     }
   }, {
     key: "renderPageDevelopers",
     value: function renderPageDevelopers() {
-      var currentMainContentContainer = this.wrapperDiv().select(".content").select(".container");
+      var currentMainContentContainer = this.getWrapperDiv().select(".content").select(".container");
       currentMainContentContainer.replace(this.renderContentBlock("developers"));
     }
   }, {
@@ -545,7 +548,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64828" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49467" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

@@ -53,7 +53,7 @@ class Components {
       .addAnchor("/#", "Games")
       .click(event => {
         event.preventDefault();
-        this.renderPageHome;
+        this.renderPageHome();
       });
 
     const navListItemPlatforms = Html()
@@ -62,7 +62,7 @@ class Components {
       .addAnchor("/#", "Platforms")
       .click(event => {
         event.preventDefault();
-        this.renderPageHome;
+        this.renderPagePlatforms();
       });
 
     const navListItemDevelopers = Html()
@@ -71,7 +71,7 @@ class Components {
       .addAnchor("/#", "Developers")
       .click(event => {
         event.preventDefault();
-        this.renderPageHome;
+        this.renderPageDevelopers();
       });
 
     navList.addChild(navListItemGames);
@@ -157,7 +157,7 @@ class Components {
   }
 
   renderPagePlatforms() {
-    const currentMainContentContainer = this.wrapperDiv()
+    const currentMainContentContainer = this.getWrapperDiv()
       .select(".content")
       .select(".container");
 
@@ -165,7 +165,7 @@ class Components {
   }
 
   renderPageDevelopers() {
-    const currentMainContentContainer = this.wrapperDiv()
+    const currentMainContentContainer = this.getWrapperDiv()
       .select(".content")
       .select(".container");
 
@@ -201,8 +201,6 @@ class Components {
     const games = Html()
       .create("ul")
       .addClass("content-list");
-
-    
 
     const coverArt = Html()
       .create("li")
