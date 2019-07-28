@@ -319,20 +319,53 @@ function () {
   _createClass(Components, [{
     key: "getAppContext",
     value: function getAppContext() {
-      return (0, _Html.default)().select('#app');
+      return (0, _Html.default)().select("#app");
     }
   }, {
     key: "getWrapperDiv",
     value: function getWrapperDiv() {
-      return (0, _Html.default)().create('div').addClass('wrapper');
+      return (0, _Html.default)().create("div").addClass("wrapper");
     }
   }, {
     key: "renderMainHeader",
     value: function renderMainHeader() {
-      var mainHeader = (0, _Html.default)().create('header').addClass('header');
-      var mainHeaderTitle = (0, _Html.default)().create('h1').addClass('header-title').text('Gaming Api');
+      var mainHeader = (0, _Html.default)().create("header").addClass("header");
+      var mainHeaderTitle = (0, _Html.default)().create("h1").addClass("header-title").text("Gaming Api");
       mainHeader.addChild(mainHeaderTitle);
       return mainHeader;
+    }
+  }, {
+    key: "renderMainFooter",
+    value: function renderMainFooter() {
+      var mainFooter = (0, _Html.default)().create("footer").addClass("footer");
+      var mainFooterCopy = (0, _Html.default)().create("small").addClass("copy").html("&copy; 2019 Gaming Api");
+      mainFooter.addChild(mainFooterCopy);
+      return mainFooter;
+    }
+  }, {
+    key: "renderNavMenu",
+    value: function renderNavMenu() {
+      var _this = this;
+
+      var navMenu = (0, _Html.default)().create("nav").addClass("nav-menu");
+      var navList = (0, _Html.default)().create("ul").addClass("nav-menu__list");
+      var navListItemGames = (0, _Html.default)().create("li").addClass("nav-menu__list-item").addAnchor("/#", "Games").click(function (event) {
+        event.preventDefault();
+        _this.renderPageHome;
+      });
+      var navListItemPlatforms = (0, _Html.default)().create("li").addClass("nav-menu__list-item").addAnchor("/#", "Platforms").click(function (event) {
+        event.preventDefault();
+        _this.renderPageHome;
+      });
+      var navListItemDevelopers = (0, _Html.default)().create("li").addClass("nav-menu__list-item").addAnchor("/#", "Developers").click(function (event) {
+        event.preventDefault();
+        _this.renderPageHome;
+      });
+      navList.addChild(navListItemGames);
+      navList.addChild(navListItemPlatforms);
+      navList.addChild(navListItemDevelopers);
+      navMenu.addChild(navList);
+      return navMenu;
     }
   }, {
     key: "renderPageHome",
@@ -340,7 +373,11 @@ function () {
       var app = this.getAppContext();
       var wrapperDiv = this.getWrapperDiv();
       var mainHeader = this.renderMainHeader();
+      var mainFooter = this.renderMainFooter();
+      var navMenu = this.renderNavMenu();
       wrapperDiv.addChild(mainHeader);
+      wrapperDiv.addChild(navMenu);
+      wrapperDiv.addChild(mainFooter);
       app.replace(wrapperDiv);
     }
   }]);
@@ -398,7 +435,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60432" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62958" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
