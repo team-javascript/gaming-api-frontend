@@ -1,0 +1,69 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font: 20px/1 sans-serif;
+  font-family: "Comfortaa", cursive;
+  background-color: #121212;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  color: #666;
+  text-decoration: none;
+}
+.content-list {
+  display: grid;
+  grid-gap: 2rem 1rem;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.content-block__list-item {
+  /* border raidus of 6rem gives rounded cards. Might be cool */
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+  box-shadow: 5px 5px grey;
+}
+
+.content-list-item__link {
+  color: #666;
+}
+
+.content-block__list-item:a {
+}
+
+.content-block__list-item:hover {
+  background-color: #666;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  color: #666;
+}
+
+.header {
+  display: flex;
+  justify-content: space-around;
+  margin: 2%;
+  color: #bb86fc;
+}
+
+.nav-menu__list {
+  display: flex;
+  justify-content: space-around;
+}
+
+.content-title {
+  display: flex;
+  justify-content: space-around;
+  margin: 2%;
+  color: #03dac6;
+}

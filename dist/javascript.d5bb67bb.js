@@ -394,7 +394,7 @@ function () {
             name = "".concat(item.companyName);
           }
 
-          var contentBlockListItem = (0, _Html.default)().create("li").addClass("content-block__list-item").addChild((0, _Html.default)().create("a").addAttribute("href", "".concat(requestedData, "/").concat(item._id)).text(name).click(function (event) {
+          var contentBlockListItem = (0, _Html.default)().create("li").addClass("content-block__list-item").addChild((0, _Html.default)().create("a").addClass("content-list-item__link").addAttribute("href", "".concat(requestedData, "/").concat(item._id)).text(name).click(function (event) {
             event.preventDefault();
             var endpoint = event.target.getAttribute("href");
             (0, _Api.default)().getRequest("http://localhost:3000/".concat(endpoint), function (data) {
@@ -459,7 +459,7 @@ function () {
       var developerName = (0, _Html.default)().create("h3").addClass("content-title").text(data.companyName);
       var developerGames = (0, _Html.default)().create("ul").addClass("content-list");
       data.gameCatalogue.forEach(function (game) {
-        var gameElement = (0, _Html.default)().create("li").addClass("content-block__list-item").addChild((0, _Html.default)().create("a").addAttribute("href", "/games/".concat(game._id)).text(game).click(function (event) {
+        var gameElement = (0, _Html.default)().create("li").addClass("content-block__list-item").addChild((0, _Html.default)().create("a").addAttribute("href", "/games/".concat(game._id)).text(game.title).click(function (event) {
           event.preventDefault();
           var endpoint = event.target.getAttribute("href");
           (0, _Api.default)().getRequest("http://localhost:3000".concat(endpoint), function (data) {
@@ -474,18 +474,20 @@ function () {
   }, {
     key: "renderPagePlatform",
     value: function renderPagePlatform(data) {
+      var _this4 = this;
+
       var currentMainContentContainer = this.getWrapperDiv().select(".content").select(".container").select(".content-block");
       var platformTitle = (0, _Html.default)().create("h3").addClass("content-title").text(data.device);
       var games = (0, _Html.default)().create("ul").addClass("content-list");
       data.gameList.forEach(function (game) {
-        var gameElement = (0, _Html.default)().create("li").addClass("content-block__list-item").addChild((0, _Html.default)().create("a").addAttribute("href", "/games/".concat(game._id)).text(game) // .click(event => {
-        //   event.preventDefault();
-        //   const endpoint = event.target.getAttribute("href");
-        //   Api().getRequest(`http://localhost:3000${endpoint}`, data => {
-        //     this.renderPageSingle(data, endpoint);
-        //   });
-        // })
-        );
+        console.log(game);
+        var gameElement = (0, _Html.default)().create("li").addClass("content-block__list-item").addChild((0, _Html.default)().create("a").addAttribute("href", "/games/".concat(game._id)).text(game.title).click(function (event) {
+          event.preventDefault();
+          var endpoint = event.target.getAttribute("href");
+          (0, _Api.default)().getRequest("http://localhost:3000".concat(endpoint), function (data) {
+            _this4.renderPageSingle(data, endpoint);
+          });
+        }));
         games.addChild(gameElement);
       });
       currentMainContentContainer.replace(platformTitle);
@@ -508,7 +510,7 @@ function () {
     }
   }, {
     key: "renderPageSingle",
-    value: function renderPageSingle(data, end) {
+    value: function renderPageSingle(data, endpoint) {
       var typeOfObject = endpoint.split("/")[1];
 
       if (typeOfObject === "games") {
@@ -593,7 +595,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52279" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53457" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

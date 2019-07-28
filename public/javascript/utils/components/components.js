@@ -115,6 +115,7 @@ class Components {
             .addChild(
               Html()
                 .create("a")
+                .addClass("content-list-item__link")
                 .addAttribute("href", `${requestedData}/${item._id}`)
                 .text(name)
                 .click(event => {
@@ -209,7 +210,7 @@ class Components {
           Html()
             .create("a")
             .addAttribute("href", `/games/${game._id}`)
-            .text(game)
+            .text(game.title)
             .click(event => {
               event.preventDefault();
 
@@ -243,6 +244,7 @@ class Components {
       .addClass("content-list");
 
     data.gameList.forEach(game => {
+      console.log(game);
       const gameElement = Html()
         .create("li")
         .addClass("content-block__list-item")
@@ -250,15 +252,15 @@ class Components {
           Html()
             .create("a")
             .addAttribute("href", `/games/${game._id}`)
-            .text(game)
-          // .click(event => {
-          //   event.preventDefault();
+            .text(game.title)
+            .click(event => {
+              event.preventDefault();
 
-          //   const endpoint = event.target.getAttribute("href");
-          //   Api().getRequest(`http://localhost:3000${endpoint}`, data => {
-          //     this.renderPageSingle(data, endpoint);
-          //   });
-          // })
+              const endpoint = event.target.getAttribute("href");
+              Api().getRequest(`http://localhost:3000${endpoint}`, data => {
+                this.renderPageSingle(data, endpoint);
+              });
+            })
         );
       games.addChild(gameElement);
     });
@@ -308,7 +310,7 @@ class Components {
     currentMainContentContainer.addChild(games);
   }
 
-  renderPageSingle(data, end) {
+  renderPageSingle(data, endpoint) {
     const typeOfObject = endpoint.split("/")[1];
     if (typeOfObject === "games") {
       this.renderPageGame(data);
